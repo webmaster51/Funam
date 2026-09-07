@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Ilustración del programa de Administración de Empresas">
+  <rect width="800" height="600" fill="#00348E"/>
+  <g>
+    <rect x="150" y="380" width="70" height="130" fill="#45C203"/>
+    <rect x="250" y="320" width="70" height="190" fill="#F59E0B"/>
+    <rect x="350" y="260" width="70" height="250" fill="#F8FAFC"/>
+    <rect x="450" y="200" width="70" height="310" fill="#45C203"/>
+    <rect x="550" y="150" width="70" height="360" fill="#F59E0B"/>
+  </g>
+  <path d="M150 470 L320 350 L420 400 L620 180" fill="none" stroke="#F8FAFC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="620" cy="180" r="12" fill="#F8FAFC"/>
+</svg>

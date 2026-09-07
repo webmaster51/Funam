@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@/assets/brand/logo-funam-blanco.png';
+
+const mapaDelSitio = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Oferta Académica', href: '/programas' },
+  { label: 'Admisiones', href: '/admisiones' },
+  { label: 'Noticias', href: '/noticias' },
+];
+
+const legales = [
+  { label: 'Acreditación institucional', href: '#' },
+  { label: 'Vigilada Mineducación', href: '#' },
+  { label: 'Política de tratamiento de datos', href: '#' },
+  { label: 'PQRS', href: '#' },
+];
+
+const redes = [
+  { label: 'FUNAM en Facebook', href: 'https://www.facebook.com/funam' },
+  { label: 'FUNAM en Instagram', href: 'https://www.instagram.com/funam' },
+  { label: 'FUNAM en LinkedIn', href: 'https://www.linkedin.com/school/funam' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-azul-institucional text-fondo-claro">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8">
+    <div class="md:col-span-1">
+      <span class="inline-flex items-center rounded-xl  px-2 py-1 shadow-sm">
+        <Image
+          src={logo}
+          alt="Fundación Universitaria del Alto Magdalena"
+          width={180}
+          height={140}
+        />
+      </span>
+      <p class="mt-4 text-sm text-fondo-claro/75">
+        Calle 5 # 5-110, Neiva, Huila, Colombia
+      </p>
+      <p class="mt-1 text-sm text-fondo-claro/75">Teléfono: +57 (1) 800 000 0000</p>
+    </div>
+
+    <nav aria-label="Mapa del sitio">
+      <h2 class="mb-3 font-heading text-sm font-semibold uppercase tracking-wide text-dorado-cta">
+        Mapa del sitio
+      </h2>
+      <ul class="space-y-2 text-sm">
+        {
+          mapaDelSitio.map((item) => (
+            <li>
+              <a href={item.href} class="text-fondo-claro/85 hover:text-dorado-cta">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <nav aria-label="Enlaces legales">
+      <h2 class="mb-3 font-heading text-sm font-semibold uppercase tracking-wide text-dorado-cta">
+        Legal
+      </h2>
+      <ul class="space-y-2 text-sm">
+        {
+          legales.map((item) => (
+            <li>
+              <a href={item.href} class="text-fondo-claro/85 hover:text-dorado-cta">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="mb-3 font-heading text-sm font-semibold uppercase tracking-wide text-dorado-cta">
+        Síguenos
+      </h2>
+      <ul class="flex gap-4">
+        {
+          redes.map((red) => (
+            <li>
+              <a
+                href={red.href}
+                aria-label={red.label}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-fondo-claro/10 text-fondo-claro hover:bg-dorado-cta hover:text-azul-institucional"
+              >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-fondo-claro/15 py-4 text-center text-xs text-fondo-claro/60">
+    &copy; {currentYear} Fundación Universitaria del Alto Magdalena (FUNAM). Todos los derechos reservados.
+  </div>
+</footer>

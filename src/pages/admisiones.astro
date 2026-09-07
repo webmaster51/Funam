@@ -1,0 +1,130 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const requisitosGenerales = [
+  {
+    titulo: 'Formulario de Inscripción',
+    descripcion: 'Diligenciamiento completo del formulario de solicitud de ingreso en línea.',
+  },
+  {
+    titulo: 'Documento de Identidad',
+    descripcion: 'Copia legible y ampliada al 150% de la cédula de ciudadanía o documento equivalente vigente.',
+  },
+  {
+    titulo: 'Título de Bachiller / Acta de Grado',
+    descripcion: 'Fotocopia autenticada del acta de grado o diploma de bachillerato otorgado por una institución acreditada.',
+  },
+  {
+    titulo: 'Pruebas de Estado (SABER 11 / ICFES)',
+    descripcion: 'Copia de los resultados oficiales de las Pruebas de Estado ICFES Saber 11.',
+  },
+  {
+    titulo: 'Certificado de Afiliación a Salud',
+    descripcion: 'Certificado de afiliación vigente a EPS o Sisbén (con fecha de expedición no mayor a 30 días).',
+  },
+  {
+    titulo: 'Fotografías Recientes',
+    descripcion: 'Dos (2) fotos tamaño 3x4 cm en fondo blanco.',
+  },
+];
+
+const pasostramite = [
+  {
+    numero: '01',
+    paso: 'Inscripción Digital',
+    detalle: 'Diligencia el formulario e ingresa tus datos en el módulo de Admisiones.',
+  },
+  {
+    numero: '02',
+    paso: 'Carga Documental',
+    detalle: 'Adjunta los documentos requeridos en formato PDF a través del portal institucional.',
+  },
+  {
+    numero: '03',
+    paso: 'Entrevista o Prueba de Selección',
+    detalle: 'Presenta la prueba o entrevista asignada según el programa académico de elección.',
+  },
+  {
+    numero: '04',
+    paso: 'Matrícula Financiera y Académica',
+    detalle: 'Realiza el pago de derechos de matrícula e ingresa tus asignaturas.',
+  },
+];
+---
+
+<BaseLayout
+  title="Requisitos de Admisión | FUNAM"
+  description="Consulta la documentación y requisitos necesarios para iniciar tu proceso de inscripción en la Fundación Universitaria del Alto Magdalena."
+  schemaType="EducationalOrganization"
+>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- Encabezado Principal -->
+    <h1 class="font-heading text-3xl font-extrabold text-azul-institucional sm:text-4xl">
+      Requisitos de Admisión
+    </h1>
+    <p class="mt-3 max-w-2xl text-azul-institucional/70">
+      Reúne la siguiente documentación para completar tu proceso de inscripción e ingreso a la FUNAM.
+    </p>
+
+    <!-- Documentos Requeridos Grid -->
+    <div class="mt-10">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Documentación Requerida (Pregrados)
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Requisitos según el protocolo de gestión de la Dirección de Admisiones, Registro y Control.
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          requisitosGenerales.map((req) => (
+            <div class="rounded-xl border border-azul-institucional/10 bg-white p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 class="font-heading text-base font-bold text-verde-texto">{req.titulo}</h3>
+                <p class="mt-2 text-xs text-azul-institucional/70 leading-relaxed">{req.descripcion}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Flujo del Proceso -->
+    <div class="mt-16 rounded-xl bg-fondo-claro p-8 border border-azul-institucional/10">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Paso a Paso del Trámite
+      </h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          pasostramite.map((item) => (
+            <div class="rounded-lg bg-white p-5 border border-azul-institucional/5">
+              <span class="font-heading text-2xl font-extrabold text-verde-texto">
+                {item.numero}
+              </span>
+              <h3 class="mt-2 font-heading text-base font-bold text-azul-institucional">
+                {item.paso}
+              </h3>
+              <p class="mt-2 text-xs text-azul-institucional/70 leading-relaxed">
+                {item.detalle}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Call to Action / Contacto -->
+    <div class="mt-16 rounded-xl bg-azul-institucional p-8 text-center text-fondo-claro">
+      <h2 class="font-heading text-2xl font-bold">¿Tienes alguna consulta con tus documentos?</h2>
+      <p class="mt-2 text-fondo-claro/85">
+        Comunícate con la Dirección de Admisiones, Registro y Control para recibir asistencia en tu proceso.
+      </p>
+      <a
+        href="mailto:admisiones@funam.edu.co"
+        class="mt-6 inline-flex items-center justify-center rounded-xl bg-dorado-cta px-6 py-3 font-semibold text-azul-institucional hover:bg-dorado-cta-oscuro hover:text-fondo-claro transition-colors"
+      >
+        Escribir a Admisiones
+      </a>
+    </div>
+  </section>
+</BaseLayout>

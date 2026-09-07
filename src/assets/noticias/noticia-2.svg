@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-label="Ilustración de certificación de acreditación institucional">
+  <rect width="800" height="450" fill="#00348E"/>
+  <circle cx="400" cy="225" r="110" fill="#F59E0B" opacity="0.15"/>
+  <circle cx="400" cy="200" r="70" fill="#F8FAFC"/>
+  <path d="M370 200l20 20 40-45" fill="none" stroke="#2F7A02" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M360 265l-25 55 45-15 20 45 25-70z" fill="#F59E0B"/>
+  <path d="M440 265l25 55-45-15-20 45-25-70z" fill="#F59E0B"/>
+</svg>

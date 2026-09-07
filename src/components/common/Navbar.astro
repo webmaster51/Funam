@@ -1,0 +1,27 @@
+---
+const accesosDirectos = [
+  { label: 'Portal Estudiantes', href: '#' },
+  { label: 'Aula Virtual', href: '#' },
+  { label: 'Pagos en Línea', href: '#' },
+  { label: 'PQRS', href: '#' },
+];
+---
+
+<nav aria-label="Accesos directos" class="bg-azul-institucional text-fondo-claro">
+  <div class="mx-auto flex max-w-7xl items-center justify-end gap-1 px-4 text-sm sm:px-6 lg:px-8">
+    <ul class="flex flex-wrap items-center">
+      {
+        accesosDirectos.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block px-3 py-2 font-medium text-fondo-claro/85 transition-colors hover:text-dorado-cta"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>

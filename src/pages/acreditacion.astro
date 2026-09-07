@@ -1,0 +1,167 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const pilaresCalidad = [
+  {
+    codigo: 'OA',
+    titulo: 'Organización Administrativa',
+    descripcion:
+      'Estructura clara de procesos, manuales de funciones y gobernanza colegiada que soportan la excelencia académica.',
+  },
+  {
+    codigo: 'EG',
+    titulo: 'Evaluación de la Gestión',
+    descripcion:
+      'Seguimiento sistemático mediante indicadores cuantitativos e hipervínculos a evidencias institucionales.',
+  },
+  {
+    codigo: 'IS',
+    titulo: 'Implementación y Seguimiento',
+    descripcion:
+      'Supervisión continua del plan estratégico y del cumplimiento de las metas de docencia e investigación.',
+  },
+  {
+    codigo: 'MC',
+    titulo: 'Mejora Continua (Ciclo PHVA)',
+    descripcion:
+      'Aplicación constante del ciclo Planear, Hacer, Verificar y Actuar para la optimización de los programas académicos.',
+  },
+];
+
+const indicadoresCalidad = [
+  {
+    codigo: 'PA 1',
+    nombre: 'Tasa de Retención Estudiantil',
+    meta: '≥ 85% por cohorte',
+    descripcion: 'Mide la permanencia de los estudiantes en los programas académicos.',
+  },
+  {
+    codigo: 'PA 4',
+    nombre: 'Relación Docente - Estudiante',
+    meta: '1:20 a 1:25 max.',
+    descripcion: 'Garantiza la atención personalizada y acompañamiento pedagógico directo.',
+  },
+  {
+    codigo: 'PA 5',
+    nombre: 'Formación Posgradual Docente',
+    meta: '≥ 70% Magíster / Doctor',
+    descripcion: 'Asegura la alta cualificación y perfil investigativo de la planta docente.',
+  },
+  {
+    codigo: 'PA 7',
+    nombre: 'Satisfacción Evaluación Docente',
+    meta: '≥ 85% calificación promedio',
+    descripcion: 'Valoración realizada periódicamente por los estudiantes sobre la calidad pedagógica.',
+  },
+];
+
+const dimensionesRecursos = [
+  { nombre: 'Recursos Físicos (F)', detalle: 'Infraestructura, aulas, laboratorios y espacios para la docencia.' },
+  { nombre: 'Recursos Humanos (H)', detalle: 'Planta docente de alta cualificación y personal administrativo capacitado.' },
+  { nombre: 'Recursos Económicos (E)', detalle: 'Sostenibilidad financiera que asegura el desarrollo de proyectos y programas.' },
+  { nombre: 'Recursos Tecnológicos (T)', detalle: 'Plataformas de aprendizaje virtual, software especializado y conectividad.' },
+];
+---
+
+<BaseLayout
+  title="Acreditación y Calidad | FUNAM"
+  description="Conoce el Sistema de Aseguramiento de Calidad, Autoevaluación y Mejora Continua de la Fundación Universitaria del Alto Magdalena."
+  schemaType="EducationalOrganization"
+>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- Encabezado Principal -->
+    <h1 class="font-heading text-3xl font-extrabold text-azul-institucional sm:text-4xl">
+      Aseguramiento de la Calidad y Autoevaluación
+    </h1>
+    <p class="mt-4 text-lg text-azul-institucional/80 leading-relaxed">
+      En la <strong>Fundación Universitaria del Alto Magdalena (FUNAM)</strong>, la calidad académica y la mejora continua son ejes transversales. Nuestro Sistema de Aseguramiento de la Calidad se fundamenta en un modelo de autoevaluación permanente de nuestros programas, infraestructura y procesos.
+    </p>
+
+    <!-- Pilares del Sistema de Calidad (Ciclo PHVA) -->
+    <div class="mt-16">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Criterios del Sistema de Gestión de Calidad
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Estructura basada en el ciclo PHVA (Planear, Hacer, Verificar, Actuar) para la autoevaluación institucional.
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        {
+          pilaresCalidad.map((pilar) => (
+            <div class="rounded-xl border border-azul-institucional/10 bg-white p-6 shadow-sm">
+              <span class="inline-block rounded-lg bg-verde-texto/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-verde-texto">
+                {pilar.codigo}
+              </span>
+              <h3 class="mt-3 font-heading text-lg font-bold text-azul-institucional">{pilar.titulo}</h3>
+              <p class="mt-2 text-sm text-azul-institucional/70 leading-relaxed">{pilar.descripcion}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Evaluación Sistemática de Recursos (F-H-E-T) -->
+    <div class="mt-16 rounded-xl bg-fondo-claro p-8 border border-azul-institucional/10">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Evaluación de Recursos Institucionales (F-H-E-T)
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        La FUNAM realiza mediciones periódicas sobre las condiciones de calidad requeridas para el registro calificado y la acreditación de sus programas:
+      </p>
+
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+        {
+          dimensionesRecursos.map((item) => (
+            <li class="rounded-lg bg-white p-4 border border-azul-institucional/5 shadow-xs">
+              <p class="font-heading text-base font-bold text-verde-texto">{item.nombre}</p>
+              <p class="mt-1 text-xs text-azul-institucional/70">{item.detalle}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Indicadores Clave de Calidad Académica -->
+    <div class="mt-16">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Indicadores de Gestión de Programas Académicos
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Métricas clave mediante las cuales el Consejo Académico evalúa de manera continua la calidad de la oferta educativa.
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          indicadoresCalidad.map((ind) => (
+            <div class="rounded-xl border border-azul-institucional/10 p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-bold text-verde-texto uppercase tracking-wider">{ind.codigo}</span>
+                <h3 class="mt-2 font-heading text-base font-bold text-azul-institucional">{ind.nombre}</h3>
+                <p class="mt-2 text-xs text-azul-institucional/70 leading-relaxed">{ind.descripcion}</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-azul-institucional/10">
+                <span class="text-xs font-semibold text-azul-institucional/60">Meta Institucional:</span>
+                <p class="font-heading text-sm font-extrabold text-azul-institucional">{ind.meta}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Call To Action / Descarga de Informes -->
+    <div class="mt-16 rounded-xl bg-azul-institucional p-8 text-center text-fondo-claro">
+      <h2 class="font-heading text-2xl font-bold">Rendición de Cuentas y Documentos de Calidad</h2>
+      <p class="mt-2 text-fondo-claro/85">
+        Consulta las resoluciones de registro calificado, el proyecto educativo institucional (PEI) y los informes de autoevaluación.
+      </p>
+      <a
+        href="mailto:calidad@funam.edu.co"
+        class="mt-6 inline-flex items-center justify-center rounded-xl bg-dorado-cta px-6 py-3 font-semibold text-azul-institucional hover:bg-dorado-cta-oscuro hover:text-fondo-claro transition-colors"
+      >
+        Contactar a la Dirección de Calidad
+      </a>
+    </div>
+  </section>
+</BaseLayout>

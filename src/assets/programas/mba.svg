@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Ilustración del programa de posgrado en Gerencia de Proyectos">
+  <rect width="800" height="600" fill="#00348E"/>
+  <circle cx="400" cy="270" r="150" fill="#45C203" opacity="0.12"/>
+  <path d="M400 180l190 80-190 80-190-80z" fill="#F59E0B"/>
+  <path d="M260 265v80c0 26 63 46 140 46s140-20 140-46v-80" fill="none" stroke="#F8FAFC" stroke-width="8" stroke-linecap="round"/>
+  <line x1="590" y1="260" x2="590" y2="360" stroke="#F8FAFC" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="590" cy="372" r="8" fill="#F8FAFC"/>
+</svg>

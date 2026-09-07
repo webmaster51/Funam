@@ -1,0 +1,20 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import OfertaAcademica from '@/components/home/OfertaAcademica.astro';
+---
+
+<BaseLayout
+  title="Oferta Académica"
+  description="Descubre todos los programas de pregrado, posgrado, técnico y educación continua de FUNAM."
+  schemaType="EducationalOrganization"
+>
+  <div class="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
+    <h1 class="font-heading text-3xl font-extrabold text-azul-institucional sm:text-4xl">
+      Oferta Académica
+    </h1>
+    <p class="mt-2 max-w-2xl text-azul-institucional/70">
+      Encuentra el programa que se ajusta a tu proyecto de vida.
+    </p>
+  </div>
+  <OfertaAcademica />
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import Navbar from './Navbar.astro';
+import Megamenu from './Megamenu.astro';
+import logo from '@/assets/brand/logo-funam.png';
+---
+
+<header class="sticky top-0 z-30 shadow-sm bg-fondo-claro">
+  <Navbar />
+  <div class="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <a href="/" class="flex items-center py-2" aria-label="Ir al inicio de FUNAM">
+      <span class="flex items-center rounded-xl bg-white px-2 py-1 shadow-sm">
+        <Image src={logo} alt="Fundación Universitaria del Alto Magdalena" width={180} height={140} loading="eager" class="h-12 w-auto" />
+      </span>
+    </a>
+
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="rounded-md p-2 text-azul-institucional-claro lg:hidden"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Abrir menú principal</span>
+      <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Menú Mobile Posicionado Absolutamente / Desktop En Flujo -->
+    <div 
+      id="mobile-menu" 
+      class="hidden absolute left-0 top-full w-full bg-fondo-claro px-4 pb-4 shadow-lg lg:static lg:block lg:w-auto lg:p-0 lg:shadow-none"
+    >
+      <Megamenu />
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    menu?.classList.toggle('hidden', isOpen);
+  });
+</script>

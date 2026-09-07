@@ -1,0 +1,87 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: ImageMetadata | string;
+  schemaType?: 'EducationalOrganization' | 'Article' | 'WebPage';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image,
+  schemaType = 'WebPage',
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const resolvedImage =
+  typeof image === 'string'
+    ? new URL(image, Astro.site).toString()
+    : image
+      ? new URL(image.src, Astro.site).toString()
+      : new URL('/favicon.svg', Astro.site).toString();
+
+const siteName = 'Fundación Universitaria del Alto Magdalena';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: siteName,
+  alternateName: 'FUNAM',
+  url: Astro.site?.toString(),
+  logo: new URL('/favicon.svg', Astro.site).toString(),
+  sameAs: [
+    'https://www.facebook.com/funam',
+    'https://www.instagram.com/funam',
+    'https://www.linkedin.com/school/funam',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Calle 5 # 5-110',
+    addressLocality: 'Neiva',
+    addressRegion: 'Huila',
+    addressCountry: 'CO',
+  },
+  telephone: '+57-1-800-000-0000',
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  image: resolvedImage,
+  url: canonicalURL.toString(),
+  publisher: {
+    '@type': 'EducationalOrganization',
+    name: siteName,
+  },
+};
+
+const jsonLd = schemaType === 'Article' ? articleSchema : organizationSchema;
+---
+
+<title>{title} | {siteName}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={schemaType === 'Article' ? 'article' : 'website'} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedImage} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="es_CO" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedImage} />
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

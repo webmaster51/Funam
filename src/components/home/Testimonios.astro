@@ -1,0 +1,42 @@
+---
+const testimonios = [
+  {
+    nombre: 'Laura Martínez',
+    programa: 'Ingeniería de Sistemas',
+    cita:
+      'FUNAM me dio las herramientas para desarrollarme profesionalmente sin salir de mi región. Hoy trabajo en el sector tecnológico gracias a la formación que recibí.',
+  },
+  {
+    nombre: 'Carlos Rodríguez',
+    programa: 'Administración de Empresas',
+    cita:
+      'Los docentes y la cercanía con el sector productivo marcaron la diferencia en mi formación. Recomiendo FUNAM a cualquiera que busque calidad académica.',
+  },
+  {
+    nombre: 'Diana Pérez',
+    programa: 'Especialización en Gerencia de Proyectos',
+    cita:
+      'La modalidad virtual me permitió seguir estudiando mientras trabajaba. El acompañamiento fue constante durante todo el programa.',
+  },
+];
+---
+
+<section class="bg-azul-institucional py-16" aria-labelledby="testimonios-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 id="testimonios-heading" class="font-heading text-3xl font-bold text-fondo-claro">
+      Nuestros egresados hablan
+    </h2>
+
+    <ul class="mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4">
+      {
+        testimonios.map((testimonio) => (
+          <li class="w-80 shrink-0 snap-start rounded-xl bg-white p-6 shadow-sm">
+            <p class="text-sm text-azul-institucional/80">&ldquo;{testimonio.cita}&rdquo;</p>
+            <p class="mt-4 font-heading text-sm font-bold text-azul-institucional">{testimonio.nombre}</p>
+            <p class="text-xs text-verde-texto">{testimonio.programa}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

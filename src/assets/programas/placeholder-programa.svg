@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Imagen genérica de programa académico">
+  <rect width="800" height="600" fill="#00348E"/>
+  <rect width="800" height="600" fill="#45C203" opacity="0.08"/>
+  <circle cx="400" cy="260" r="120" fill="#F8FAFC" opacity="0.08"/>
+  <path d="M400 190l160 70-160 70-160-70z" fill="#F59E0B"/>
+  <path d="M280 280v70c0 22 54 40 120 40s120-18 120-40v-70" fill="none" stroke="#F8FAFC" stroke-width="8" stroke-linecap="round"/>
+</svg>

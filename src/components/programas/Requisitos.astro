@@ -1,0 +1,43 @@
+---
+interface Props {
+  requisitosAdmision?: string[];
+}
+
+const { requisitosAdmision } = Astro.props;
+
+const requisitosGenericos = [
+  'Diligenciar el formulario de inscripción en línea.',
+  'Fotocopia del documento de identidad.',
+  'Fotocopia del diploma y acta de grado (o su equivalente).',
+  'Resultados de las pruebas Saber 11 o Saber Pro, según aplique.',
+  'Cancelar el valor de los derechos de inscripción.',
+];
+
+const requisitos = requisitosAdmision?.length ? requisitosAdmision : requisitosGenericos;
+---
+
+<section aria-labelledby="requisitos-heading">
+  <h2 id="requisitos-heading" class="font-heading text-xl font-bold text-azul-institucional">
+    Requisitos de admisión
+  </h2>
+
+  <ol class="mt-4 space-y-3 rounded-xl border border-azul-institucional/10 p-5 shadow-sm">
+    {
+      requisitos.map((requisito, index) => (
+        <li class="flex items-start gap-3 text-sm text-azul-institucional/85">
+          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-dorado-cta/20 text-xs font-bold text-dorado-cta-oscuro">
+            {index + 1}
+          </span>
+          {requisito}
+        </li>
+      ))
+    }
+  </ol>
+
+  <a
+    href="/admisiones"
+    class="mt-4 inline-block text-sm font-semibold text-verde-texto hover:underline"
+  >
+    Ver proceso completo de admisiones &rarr;
+  </a>
+</section>

@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const noticias = (await getCollection('noticias', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf())
+  .slice(0, 3);
+
+const formateador = new Intl.DateTimeFormat('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const categoriaLabel: Record<string, string> = {
+  evento: 'Evento',
+  boletin: 'Boletín',
+  institucional: 'Institucional',
+  admisiones: 'Admisiones',
+};
+---
+
+<section class="bg-white py-16" aria-labelledby="noticias-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between">
+      <h2 id="noticias-heading" class="font-heading text-3xl font-bold text-azul-institucional">
+        Noticias y eventos
+      </h2>
+      <a href="/noticias" class="text-sm font-semibold text-verde-texto hover:underline">
+        Ver todas &rarr;
+      </a>
+    </div>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        noticias.map((noticia) => (
+          <article class="flex flex-col overflow-hidden rounded-xl border border-azul-institucional/10 shadow-sm transition-shadow hover:shadow-md">
+            <Image
+              src={noticia.data.imagen}
+              alt={noticia.data.imagenAlt}
+              class="h-44 w-full object-cover"
+            />
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-xs font-semibold uppercase tracking-wide text-dorado-cta-oscuro">
+                {categoriaLabel[noticia.data.categoria]}
+              </span>
+              <h3 class="mt-2 font-heading text-lg font-bold text-azul-institucional">
+                {noticia.data.titulo}
+              </h3>
+              <p class="mt-2 flex-1 text-sm text-azul-institucional/70">{noticia.data.resumen}</p>
+              <div class="mt-4 flex items-center justify-between text-xs text-azul-institucional/50">
+                <time datetime={noticia.data.fecha.toISOString()}>
+                  {formateador.format(noticia.data.fecha)}
+                </time>
+                <a href={`/noticias/${noticia.id}`} class="font-semibold text-verde-texto hover:underline">
+                  Leer más &rarr;
+                </a>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

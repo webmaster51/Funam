@@ -1,0 +1,215 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const autoridadesColegiadas = [
+  {
+    titulo: 'Asamblea General',
+    descripcion:
+      'Máximo órgano deliberante y decisorio de la FUNAM, encargado de establecer los lineamientos generales institucionales y velar por el objeto fundacional.',
+  },
+  {
+    titulo: 'Consejo Superior',
+    descripcion:
+      'Máxima autoridad colegiada de dirección. Define las políticas, reglamentos y directrices generales que orientan el desarrollo académico, administrativo y financiero.',
+  },
+  {
+    titulo: 'Consejo Académico',
+    descripcion:
+      'Autoridad encargada de la planificación, desarrollo, aseguramiento y evaluación continua de las actividades académicas, científicas y de investigación.',
+  },
+  {
+    titulo: 'Consejo de Facultad',
+    descripcion:
+      'Órganos colegiados responsables de la dirección, gestión y articulación curricular interna en cada una de las facultades.',
+  },
+];
+
+const autoridadesUnipersonales = [
+  {
+    cargo: 'Presidencia y Representación Legal',
+    nombre: 'Dr. Abel Fernely Sepúlveda Ramos',
+    perfil: 'Médico y Cirujano General, Especialista en Administración Hospitalaria.',
+  },
+  {
+    cargo: 'Rectoría',
+    nombre: 'Héctor Javier Castro Torres',
+    perfil:
+      'Economista en Comercio Exterior, Especialista en Logística Empresarial y Administración, Magíster en Administración Económica y Financiera.',
+  },
+  {
+    cargo: 'Secretaría General',
+    nombre: 'Paula Alexandra Serrano Herrera',
+    perfil: 'Abogada Especialista en Instituciones Jurídico Procesales.',
+  },
+  {
+    cargo: 'Vicerrectoría Administrativa',
+    nombre: 'Karen Pastrana Vera',
+    perfil: 'Contadora Pública, Especialista en Gerencia Financiera.',
+  },
+  {
+    cargo: 'Vicerrectoría de Investigación e Innovación',
+    nombre: 'Edith del Carmen Hernández Rojas',
+    perfil: 'Bacterióloga, Magíster en Ciencias.',
+  },
+];
+
+const principiosFundacionales = [
+  {
+    titulo: 'Solidaridad y Economía Cooperativa',
+    descripcion:
+      'Fundamento misional de nuestros fundadores que fomenta el apoyo mutuo, la inclusión social y la prosperidad en la región Surcolombiana.',
+  },
+  {
+    titulo: 'Paz e Irenología',
+    descripcion:
+      'Integración del estudio y comprensión de la paz, capacitando a la comunidad en la resolución constructiva de conflictos y la cohesión social.',
+  },
+  {
+    titulo: 'Compromiso con los ODS y el Entorno',
+    descripcion:
+      'Alineación estratégica con los Objetivos de Desarrollo Sostenible, la Visión Huila 2040 y la sostenibilidad ambiental.',
+  },
+  {
+    titulo: 'Calidad y Transparencia',
+    descripcion:
+      'Búsqueda constante de la excelencia académica, la rendición de cuentas y la gestión eficiente de recursos (F-H-E-T).',
+  },
+];
+
+const pilaresRecursos = [
+  { sigla: 'F', nombre: 'Recursos Físicos', descripcion: 'Infraestructura, aulas y laboratorios idóneos y seguros.' },
+  { sigla: 'H', nombre: 'Recursos Humanos', descripcion: 'Docentes y administrativos altamente calificados.' },
+  { sigla: 'E', nombre: 'Recursos Económicos', descripcion: 'Solidez y gestión financiera responsable.' },
+  { sigla: 'T', nombre: 'Recursos Tecnológicos', descripcion: 'Plataformas digitales de vanguardia.' },
+];
+---
+
+<BaseLayout
+  title="Quiénes Somos | FUNAM"
+  description="Conoce la Fundación Universitaria del Alto Magdalena (FUNAM): nuestra naturaleza jurídica, gobierno escolar, principios fundacionales y equipo directivo."
+  schemaType="EducationalOrganization"
+>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- Encabezado Principal -->
+    <h1 class="font-heading text-3xl font-extrabold text-azul-institucional sm:text-4xl">
+      Nuestra Institución
+    </h1>
+    <p class="mt-4 text-lg text-azul-institucional/80 leading-relaxed">
+      La <strong>Fundación Universitaria del Alto Magdalena (FUNAM)</strong> es una Institución de Educación Superior de utilidad común y sin ánimo de lucro, con sede principal en Neiva (Huila). Promovemos una formación integral enfocada en la excelencia académica, la paz, la solidaridad y la pertinencia regional en la zona Surcolombiana.
+    </p>
+
+    <!-- Principios Fundacionales (Estatutos / PEI) -->
+    <div class="mt-16">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Principios Fundacionales e Identidad
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Ejes éticos y conceptuales fijados en el Estatuto General y el Proyecto Educativo Institucional (PEI).
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        {
+          principiosFundacionales.map((p) => (
+            <div class="rounded-xl border border-azul-institucional/10 bg-white p-6 shadow-sm">
+              <h3 class="font-heading text-lg font-bold text-verde-texto">{p.titulo}</h3>
+              <p class="mt-2 text-sm text-azul-institucional/70 leading-relaxed">{p.descripcion}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Gobierno Escolar: Autoridades Colegiadas -->
+    <div class="mt-16">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Gobierno Escolar: Autoridades Colegiadas
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Conforme al Artículo 21 del Estatuto General, garantizamos un modelo democrático, participativo y transparente.
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        {
+          autoridadesColegiadas.map((item) => (
+            <div class="rounded-xl border border-azul-institucional/10 bg-fondo-claro p-6 shadow-xs">
+              <h3 class="font-heading text-lg font-bold text-azul-institucional">{item.titulo}</h3>
+              <p class="mt-2 text-sm text-azul-institucional/70 leading-relaxed">{item.descripcion}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Equipo Directivo (Autoridades Unipersonales) -->
+    <div class="mt-16">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Autoridades Unipersonales y Equipo Directivo
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Líderes a cargo de la dirección ejecutiva, académica y administrativa de la institución.
+      </p>
+
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          autoridadesUnipersonales.map((persona) => (
+            <li class="rounded-xl bg-white p-5 flex flex-col justify-between border border-azul-institucional/10 shadow-xs">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-verde-texto">
+                  {persona.cargo}
+                </span>
+                <h3 class="mt-2 font-heading text-base font-bold text-azul-institucional">
+                  {persona.nombre}
+                </h3>
+                <p class="mt-2 text-xs text-azul-institucional/70 leading-relaxed">
+                  {persona.perfil}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Modelo de Gestión y Recursos F-H-E-T -->
+    <div class="mt-16">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Modelo de Autoevaluación y Sostenibilidad (F-H-E-T)
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Evaluamos sistemáticamente cuatro pilares institucionales para garantizar la excelencia académica y administrativa.
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          pilaresRecursos.map((pilar) => (
+            <div class="rounded-xl border border-azul-institucional/10 p-6 shadow-sm bg-white">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-dorado-cta font-heading font-extrabold text-azul-institucional">
+                {pilar.sigla}
+              </span>
+              <h3 class="mt-4 font-heading text-base font-bold text-azul-institucional">
+                {pilar.nombre}
+              </h3>
+              <p class="mt-2 text-xs text-azul-institucional/70 leading-relaxed">
+                {pilar.descripcion}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Call To Action final -->
+    <div class="mt-16 rounded-xl bg-azul-institucional p-8 text-center text-fondo-claro">
+      <h2 class="font-heading text-2xl font-bold">Conoce nuestra Misión y Visión al 2035</h2>
+      <p class="mt-2 text-fondo-claro/85">
+        Descubre los objetivos institucionales fijados en nuestro Proyecto Educativo Institucional (PEI).
+      </p>
+      <a
+        href="/mision-vision"
+        class="mt-6 inline-flex items-center justify-center rounded-xl bg-dorado-cta px-6 py-3 font-semibold text-azul-institucional hover:bg-dorado-cta-oscuro hover:text-fondo-claro transition-colors"
+      >
+        Ver Misión y Visión
+      </a>
+    </div>
+  </section>
+</BaseLayout>

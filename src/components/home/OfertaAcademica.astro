@@ -1,0 +1,137 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Props {
+  limitePorCategoria?: number;
+}
+
+const { limitePorCategoria } = Astro.props;
+
+const todosLosProgramas = (await getCollection('programas', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.titulo.localeCompare(b.data.titulo)
+);
+
+const tabs = [
+  { id: 'pregrado', label: 'Pregrado' },
+  { id: 'posgrado', label: 'Posgrado' },
+  { id: 'educacion-continua', label: 'Educación Continua' },
+] as const;
+
+const programasPorTipo = Object.fromEntries(
+  tabs.map((tab) => {
+    const filtrados = todosLosProgramas.filter((p) => p.data.tipo === tab.id);
+    return [tab.id, limitePorCategoria ? filtrados.slice(0, limitePorCategoria) : filtrados];
+  })
+);
+
+const modalidadLabel: Record<string, string> = {
+  presencial: 'Presencial',
+  virtual: 'Virtual',
+  hibrida: 'Híbrida',
+};
+---
+
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="oferta-heading">
+  <h2 id="oferta-heading" class="font-heading text-3xl font-bold text-azul-institucional">
+    Oferta Académica
+  </h2>
+  <p class="mt-2 max-w-2xl text-azul-institucional/70">
+    Explora nuestros programas por nivel de formación.
+  </p>
+
+  <div role="tablist" aria-label="Nivel de formación" class="mt-8 flex flex-wrap gap-2 border-b border-azul-institucional/10">
+    {
+      tabs.map((tab, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${tab.id}`}
+          aria-controls={`panel-${tab.id}`}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          data-tipo={tab.id}
+          class="oferta-tab -mb-px border-b-2 border-transparent px-4 py-2 text-sm font-semibold text-azul-institucional/60 aria-selected:border-dorado-cta aria-selected:text-azul-institucional"
+        >
+          {tab.label}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    tabs.map((tab, index) => (
+      <div
+        role="tabpanel"
+        id={`panel-${tab.id}`}
+        aria-labelledby={`tab-${tab.id}`}
+        hidden={index !== 0}
+        class="oferta-panel mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {programasPorTipo[tab.id].length === 0 && (
+          <p class="col-span-full text-sm text-azul-institucional/60">
+            Próximamente nuevos programas en esta categoría.
+          </p>
+        )}
+        {programasPorTipo[tab.id].map((programa) => (
+          <article
+            data-titulo={programa.data.titulo.toLowerCase()}
+            class="oferta-card flex flex-col overflow-hidden rounded-xl border border-azul-institucional/10 shadow-sm transition-shadow hover:shadow-md"
+          >
+            <Image
+              src={programa.data.imagen}
+              alt={programa.data.imagenAlt}
+              class="h-40 w-full object-cover"
+            />
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-xs font-semibold uppercase tracking-wide text-verde-texto">
+                {modalidadLabel[programa.data.modalidad]} · {programa.data.duracion}
+              </span>
+              <h3 class="mt-2 font-heading text-lg font-bold text-azul-institucional">
+                {programa.data.titulo}
+              </h3>
+              <p class="mt-2 flex-1 text-sm text-azul-institucional/70">{programa.data.resumen}</p>
+              <a
+                href={`/programas/${programa.id}`}
+                class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-verde-texto hover:underline"
+              >
+                Ver programa &rarr;
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    ))
+  }
+</section>
+
+<script>
+  const tabButtons = document.querySelectorAll<HTMLButtonElement>('.oferta-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.oferta-panel');
+
+  function activarTab(tipo: string) {
+    tabButtons.forEach((btn) => {
+      btn.setAttribute('aria-selected', String(btn.dataset.tipo === tipo));
+    });
+    panels.forEach((panel) => {
+      panel.toggleAttribute('hidden', panel.id !== `panel-${tipo}`);
+    });
+  }
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => activarTab(btn.dataset.tipo ?? ''));
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  const tipoParam = params.get('tipo');
+  if (tipoParam && document.getElementById(`panel-${tipoParam}`)) {
+    activarTab(tipoParam);
+  }
+
+  const query = params.get('q')?.trim().toLowerCase();
+  if (query) {
+    document.querySelectorAll<HTMLElement>('.oferta-card').forEach((card) => {
+      const coincide = card.dataset.titulo?.includes(query);
+      card.toggleAttribute('hidden', !coincide);
+    });
+  }
+</script>

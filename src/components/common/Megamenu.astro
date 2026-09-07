@@ -1,0 +1,163 @@
+---
+interface SubItem {
+  label: string;
+  href: string;
+}
+
+interface MenuItem {
+  id: string;
+  label: string;
+  href?: string;
+  submenu?: SubItem[];
+}
+
+const menu: MenuItem[] = [
+  {
+    id: 'institucional',
+    label: 'Institucional',
+    submenu: [
+      { label: 'Quiénes somos', href: '/quienes-somos' },
+      { label: 'Misión y visión', href: '/mision-vision' },
+      { label: 'Acreditación', href: '/acreditacion' },
+    ],
+  },
+  {
+    id: 'oferta',
+    label: 'Oferta Académica',
+    submenu: [
+      { label: 'Pregrados', href: '/programas?tipo=pregrado' },
+    ],
+  },
+  { id: 'admisiones', label: 'Admisiones', href: '/admisiones' },
+  {
+    id: 'investigacion',
+    label: 'Investigación',
+    submenu: [
+      { label: 'Grupos de investigación', href: '/grupos-de-investigacion' },
+  /**    { label: 'Semilleros', href: '#' }, 
+      { label: 'Publicaciones', href: '#' },
+  */    ],
+  },
+  {
+    id: 'extension',
+    label: 'Extensión',
+    submenu: [
+      { label: 'Proyección social', href: '#' },
+      { label: 'Egresados', href: '#' },
+      { label: 'Convenios', href: '#' },
+    ],
+  },
+];
+---
+
+<nav aria-label="Principal" class="megamenu">
+  <ul class="flex flex-col lg:flex-row lg:items-center">
+    {
+      menu.map((item) =>
+        item.submenu ? (
+          <li class="relative border-b border-azul-institucional-claro/40 lg:border-b-0">
+            <button
+              type="button"
+              class="megamenu-trigger flex w-full items-center justify-between gap-1 px-4 py-3 text-left font-semibold text-azul-institucional hover:text-dorado-cta lg:w-auto"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls={`submenu-${item.id}`}
+            >
+              {item.label}
+              <svg
+                class="h-4 w-4 shrink-0 transition-transform"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+            <div
+              id={`submenu-${item.id}`}
+              role="group"
+              hidden
+              class="megamenu-panel static w-full bg-azul-institucional-claro/20 lg:absolute lg:left-0 lg:top-full lg:z-20 lg:w-56 lg:rounded-xl lg:bg-white lg:py-2 lg:shadow-lg"
+            >
+              <ul>
+                {item.submenu.map((sub) => (
+                  <li>
+                    <a
+                      href={sub.href}
+                      class="block px-6 py-2 text-sm font-medium text-azul-institucional/90 hover:text-dorado-cta lg:px-4 lg:text-azul-institucional lg:hover:bg-fondo-claro lg:hover:text-verde-texto"
+                    >
+                      {sub.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ) : (
+          <li class="border-b border-azul-institucional-claro/40 lg:border-b-0">
+            <a
+              href={item.href}
+              class="block px-4 py-3 font-semibold text-azul-institucional hover:text-dorado-cta"
+            >
+              {item.label}
+            </a>
+          </li>
+        )
+      )
+    }
+  </ul>
+</nav>
+
+<script>
+  const triggers = document.querySelectorAll<HTMLButtonElement>('.megamenu-trigger');
+
+  function closeAll(except?: HTMLButtonElement) {
+    triggers.forEach((trigger) => {
+      if (trigger === except) return;
+      trigger.setAttribute('aria-expanded', 'false');
+      const panelId = trigger.getAttribute('aria-controls');
+      const panel = panelId ? document.getElementById(panelId) : null;
+      panel?.setAttribute('hidden', '');
+    });
+  }
+
+  triggers.forEach((trigger) => {
+    const panelId = trigger.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!panel) return;
+
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      closeAll(isOpen ? undefined : trigger);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+      if (isOpen) {
+        panel.setAttribute('hidden', '');
+      } else {
+        panel.removeAttribute('hidden');
+      }
+    });
+
+    trigger.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        trigger.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('hidden', '');
+        trigger.focus();
+      }
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.megamenu')) {
+      closeAll();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeAll();
+  });
+</script>

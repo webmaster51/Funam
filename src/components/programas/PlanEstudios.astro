@@ -1,0 +1,61 @@
+---
+interface Semestre {
+  semestre: string;
+  materias: string[];
+}
+
+interface Props {
+  planEstudios: Semestre[];
+}
+
+const { planEstudios } = Astro.props;
+---
+
+<section aria-labelledby="plan-estudios-heading">
+  <h2 id="plan-estudios-heading" class="font-heading text-xl font-bold text-azul-institucional">
+    Plan de estudios
+  </h2>
+
+  <div class="mt-4 divide-y divide-azul-institucional/10 overflow-hidden rounded-xl border border-azul-institucional/10 shadow-sm">
+    {
+      planEstudios.map((bloque, index) => (
+        <div>
+          <h3>
+            <button
+              type="button"
+              class="acordeon-trigger flex w-full items-center justify-between gap-2 px-4 py-3 text-left font-semibold text-azul-institucional hover:bg-fondo-claro"
+              aria-expanded="false"
+              aria-controls={`semestre-panel-${index}`}
+            >
+              {bloque.semestre}
+              <svg class="h-4 w-4 shrink-0 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </h3>
+          <div id={`semestre-panel-${index}`} hidden class="bg-fondo-claro px-4 py-3">
+            <ul class="list-inside list-disc space-y-1 text-sm text-azul-institucional/85">
+              {bloque.materias.map((materia) => (
+                <li>{materia}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.acordeon-trigger').forEach((trigger) => {
+    const panelId = trigger.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!panel) return;
+
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+      panel.toggleAttribute('hidden', isOpen);
+    });
+  });
+</script>

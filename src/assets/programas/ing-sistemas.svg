@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Ilustración del programa de Ingeniería de Sistemas">
+  <rect width="800" height="600" fill="#00348E"/>
+  <g stroke="#45C203" stroke-width="4" fill="none" opacity="0.7">
+    <path d="M100 150h180v100h140v120h180"/>
+    <path d="M700 150H520v90H380v140H100"/>
+  </g>
+  <g fill="#F59E0B">
+    <circle cx="100" cy="150" r="10"/>
+    <circle cx="280" cy="250" r="10"/>
+    <circle cx="420" cy="370" r="10"/>
+    <circle cx="700" cy="470" r="10"/>
+    <circle cx="700" cy="150" r="10"/>
+    <circle cx="100" cy="470" r="10"/>
+  </g>
+  <rect x="330" y="260" width="140" height="90" rx="8" fill="#F8FAFC"/>
+  <rect x="345" y="275" width="110" height="10" rx="3" fill="#00348E"/>
+  <rect x="345" y="295" width="80" height="10" rx="3" fill="#00348E"/>
+  <rect x="345" y="315" width="95" height="10" rx="3" fill="#00348E"/>
+</svg>

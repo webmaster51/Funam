@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import campusHero from '@/assets/hero/campus-hero.svg';
+import sedeHero from '@/assets/hero/sede-hero.svg';
+
+---
+
+<section class="relative isolate overflow-hidden">
+  <Image
+    src={sedeHero}
+    alt=""
+    role="presentation"
+    loading="eager"
+    class="absolute inset-0 -z-10 h-full w-full object-cover"
+  />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-azul-institucional via-azul-institucional/85 to-azul-institucional/50" />
+
+  <div class="mx-auto max-w-4xl px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8">
+    <h1 class="font-heading text-4xl font-extrabold text-fondo-claro sm:text-5xl">
+      Forma tu futuro en la Fundación Universitaria del Alto Magdalena
+    </h1>
+    <p class="mx-auto mt-4 max-w-2xl text-lg text-fondo-claro/90">
+      Programas de pregrado, posgrados y educación continua con calidad, sostenibilidad
+      e impacto regional.
+    </p>
+
+    <form action="/programas" method="get" class="mx-auto mt-8 flex max-w-xl gap-2" role="search">
+      <label for="hero-search" class="sr-only">Buscar programa académico</label>
+      <input
+        id="hero-search"
+        type="search"
+        name="q"
+        placeholder="Busca tu programa académico…"
+        class="w-full rounded-xl border-0 px-4 py-3 text-fondo-claro shadow-sm placeholder:text-fondo-claro/50 focus:outline-none"
+      />
+      <button
+        type="submit"
+        class="shrink-0 rounded-xl bg-verde-esperanza px-5 py-3 font-semibold text-fondo-claro shadow-sm hover:bg-verde-texto hover:text-fondo-claro"
+      >
+        Buscar
+      </button>
+    </form>
+
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <a
+        href="/programas"
+        class="rounded-xl bg-dorado-cta px-6 py-3 font-semibold text-azul-institucional shadow-sm transition-colors hover:bg-dorado-cta-oscuro hover:text-fondo-claro"
+      >
+        Ver Programas
+      </a>
+      <a
+        href="/admisiones"
+        class="rounded-xl border-2 border-fondo-claro px-6 py-3 font-semibold text-fondo-claro transition-colors hover:bg-fondo-claro hover:text-azul-institucional"
+      >
+        Inscribirme
+      </a>
+    </div>
+  </div>
+</section>

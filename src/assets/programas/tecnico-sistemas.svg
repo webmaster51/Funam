@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Ilustración del programa técnico laboral">
+  <rect width="800" height="600" fill="#00348E"/>
+  <rect x="220" y="200" width="360" height="220" rx="14" fill="#F8FAFC" opacity="0.08"/>
+  <rect x="260" y="240" width="280" height="140" rx="6" fill="#45C203"/>
+  <rect x="280" y="260" width="240" height="14" rx="4" fill="#F8FAFC"/>
+  <rect x="280" y="286" width="180" height="14" rx="4" fill="#F8FAFC"/>
+  <rect x="280" y="312" width="210" height="14" rx="4" fill="#F8FAFC"/>
+  <rect x="370" y="420" width="60" height="30" fill="#F59E0B"/>
+  <rect x="330" y="450" width="140" height="14" rx="6" fill="#F59E0B"/>
+</svg>

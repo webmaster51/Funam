@@ -1,0 +1,149 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const enfoquesInvestigacion = [
+  {
+    titulo: 'Grupos de Investigación',
+    descripcion:
+      'Unidades compuestas por docentes investigadores y profesionales dedicados a la generación de nuevo conocimiento e innovación aplicable a la región.',
+  },
+  {
+    titulo: 'Semilleros de Investigación',
+    descripcion:
+      'Espacios formativos para estudiantes de pregrado donde se promueve el pensamiento crítico, la metodología científica y la formación de nuevos investigadores.',
+  },
+  {
+    titulo: 'Proyectos de Desarrollo e Innovación',
+    descripcion:
+      'Iniciativas enfocadas en resolver problemáticas del sector productivo, empresarial y de salud pública en el Alto Magdalena.',
+  },
+];
+
+const indicadoresInvestigacion = [
+  {
+    codigo: 'PA 6',
+    nombre: 'Producción Investigativa',
+    detalle: 'Mide el número de publicaciones, artículos en revistas indexadas y productos de desarrollo tecnológico generados por cohorte docente.',
+  },
+  {
+    codigo: 'H 2',
+    nombre: 'Docentes Investigadores',
+    detalle: 'Porcentaje de la planta docente vinculada activamente a proyectos de investigación con formación de maestría y doctorado.',
+  },
+];
+
+// Reemplazar / actualizar con los grupos registrados en MinCiencias / FUNAM
+const gruposInvestigacion = [
+  {
+    nombre: 'Grupo de Investigación en Salud Pública y Comunidad',
+    lineas: ['Salud Ocupacional', 'Epidemiología Regional', 'Gestión en Salud'],
+    lider: 'Vicerrectoría de Investigación e Innovación',
+  },
+  {
+    nombre: 'Grupo de Investigación en Desarrollo Empresarial e Innovación',
+    lineas: ['Gestión Organizacional', 'Emprendimiento Regional', 'Competitividad'],
+    lider: 'Facultad de Ciencias Administrativas',
+  },
+];
+---
+
+<BaseLayout
+  title="Investigación e Innovación | FUNAM"
+  description="Conoce los grupos, semilleros y líneas de investigación de la Vicerrectoría de Investigación e Innovación de la FUNAM."
+  schemaType="EducationalOrganization"
+>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- Encabezado Principal -->
+    <h1 class="font-heading text-3xl font-extrabold text-azul-institucional sm:text-4xl">
+      Investigación e Innovación
+    </h1>
+    <p class="mt-4 text-lg text-azul-institucional/80 leading-relaxed">
+      La <strong>Vicerrectoría de Investigación e Innovación</strong> de la FUNAM fomenta la creación de conocimiento, la innovación y el desarrollo tecnológico para impactar positivamente en el territorio del Alto Magdalena.
+    </p>
+
+    <!-- Pilares del Sistema de Investigación -->
+    <div class="mt-12 grid gap-6 sm:grid-cols-3">
+      {
+        enfoquesInvestigacion.map((item) => (
+          <div class="rounded-xl border border-azul-institucional/10 bg-white p-6 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-lg font-bold text-verde-texto">{item.titulo}</h3>
+              <p class="mt-2 text-xs text-azul-institucional/70 leading-relaxed">{item.descripcion}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Grupos de Investigación Registrados -->
+    <div class="mt-16">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Grupos de Investigación Institucionales
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Equipos de investigación categorizados y articulados con las facultades académicas.
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        {
+          gruposInvestigacion.map((grupo) => (
+            <div class="rounded-xl border border-azul-institucional/10 bg-white p-6 shadow-sm">
+              <span class="text-xs font-bold uppercase tracking-wider text-verde-texto">
+                {grupo.lider}
+              </span>
+              <h3 class="mt-2 font-heading text-lg font-bold text-azul-institucional">
+                {grupo.nombre}
+              </h3>
+              <div class="mt-4">
+                <span class="text-xs font-semibold text-azul-institucional/60">Líneas de Investigación:</span>
+                <ul class="mt-2 flex flex-wrap gap-1.5">
+                  {grupo.lineas.map((linea) => (
+                    <li class="rounded-md bg-fondo-claro px-2.5 py-1 text-xs text-azul-institucional/80 border border-azul-institucional/5">
+                      {linea}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Indicadores de Calidad Investigativa -->
+    <div class="mt-16 rounded-xl bg-fondo-claro p-8 border border-azul-institucional/10">
+      <h2 class="font-heading text-2xl font-bold text-azul-institucional">
+        Métricas de Gestión e Impacto Investigativo
+      </h2>
+      <p class="mt-2 text-sm text-azul-institucional/70">
+        Seguimiento periódico del desarrollo investigativo conforme a los estándares de autoevaluación (PA 6).
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        {
+          indicadoresInvestigacion.map((ind) => (
+            <div class="rounded-lg bg-white p-5 border border-azul-institucional/5 shadow-xs">
+              <span class="font-heading text-xs font-extrabold text-verde-texto">{ind.codigo}</span>
+              <h3 class="mt-1 font-heading text-base font-bold text-azul-institucional">{ind.nombre}</h3>
+              <p class="mt-2 text-xs text-azul-institucional/70 leading-relaxed">{ind.detalle}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="mt-16 rounded-xl bg-azul-institucional p-8 text-center text-fondo-claro">
+      <h2 class="font-heading text-2xl font-bold">¿Quieres formar parte de un Semillero?</h2>
+      <p class="mt-2 text-fondo-claro/85">
+        Escríbenos para conocer las convocatorias vigentes de jóvenes investigadores y proyectos.
+      </p>
+      <a
+        href="mailto:investigacion@funam.edu.co"
+        class="mt-6 inline-flex items-center justify-center rounded-xl bg-dorado-cta px-6 py-3 font-semibold text-azul-institucional hover:bg-dorado-cta-oscuro hover:text-fondo-claro transition-colors"
+      >
+        Contactar a la Vicerrectoría de Investigación
+      </a>
+    </div>
+  </section>
+</BaseLayout>
